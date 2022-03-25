@@ -1,0 +1,25 @@
+INC = +incdir+../agent_simple +incdir+../env_simple +incdir+../test  
+SVTB =  ../module_top.sv
+SVTB1 = ../test/asic_jan2018_test.sv
+PKG = ../simple_pkg.sv
+ 
+#TWO Step VCS_MX 2017 tool flow (if compiling your code using two step flow,just do comp and skip analyse and elaborate,
+
+comp:
+	vcs -sverilog -ntb_opts uvm-1.1 $(INC) $(PKG)	$(SVTB) -full64 -l compile.log
+
+#Three step VCS_MX Tool Flow
+all: analyse elaborate run clean
+analyse:
+	vlogan -sverilog -ntb_opts uvm-1.1 -full64 -l analyse.log
+	vlogan -sverilog -ntb_opts uvm-1.1 $(INC) $(PKG) $(SVTB) -full64 -l three_step.log
+
+elaborate:
+	vcs -sverilog -ntb_opts uvm-1.1 module_top -full64 -l elaborate.log
+
+run:
+	./simv +UVM_TESTNAME=asic_jan2018_test -l simulation.log
+
+clean:
+	\rm -rf *.vdb *.vpd ./simv simv.daidir work csrc vc_hdrs.h ucli.key  *.DB
+
