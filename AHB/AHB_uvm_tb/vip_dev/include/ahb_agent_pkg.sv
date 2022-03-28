@@ -2,14 +2,10 @@
 `ifndef AHB_AGENT_PKG_SV
 `define AHB_AGENT_PKG_SV
 
-`include "ahb_if.sv"
 
-package agent_pkg;
+package ahb_agent_pkg;
 
-
-  import uvm_pkg::*;
-  `include "uvm_macros.svh"
-  
+ 
   `include "../src/agent/transaction.sv"
   `include "../src/agent/seq_item.sv"
   `include "../src/agent/sequence.sv"
@@ -21,6 +17,6 @@ package agent_pkg;
   `include "../src/agent/env.sv"
   `include "../src/agent/test.sv"
   
-endpackage: agent_pkg;
+endpackage: ahb_agent_pkg;
   
 `endif

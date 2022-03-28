@@ -1,37 +1,16 @@
 
-//  Module: ahb_top
+//  Module: ahb_design_top
 //
 
 `timescale 1ns/1ps
 
-
-module ahb_top
+module ahb_design_top
   /*  package imports  */
   #(
     parameter BUS_WIDTH=32,
     parameter DATA_WIDTH=32
   )(
-    HCLK,
-    HRESETn,
-
-    HADDR,
-    HBURST,
-    HMASTLOCK,
-    HPROT,
-    HSIZE,
-    HNONSEC,
-    HEXCL,
-    HMASTER,
-    HTRANS,
-    HWDATA,
-    HWRITE,
-
-    HRDATA,
-    HREADYOUT,
-    HRESP,
-    HEXOKAY,
-
-    HSELx
+    ahb_if ahb_design_top_if
   );
   // User defined parameters -----------
 
@@ -39,27 +18,9 @@ module ahb_top
 
   // Parameters ------------------------
 
-  // INPUT Signals ---------------------
+  // INPUT Signals // interface implementation ---------------------
 
-  input         HCLK;
-  input         HRESETn;
-  input [BUS_WIDTH-1:0]  HADDR;
-  input [2:0]   HBURST;
-  input         HMASTLOCK;
-  input [6:0]   HPROT;
-  input [2:0]   HSIZE;
-  input         HNONSEC;
-  input         HEXCL;
-  input [3:0]   HMASTER;
-  input [1:0]   HTRANS;
-  input [DATA_WIDTH-1:0]  HWDATA;
-  input         HWRITE;
-
-  input [DATA_WIDTH-1:0]  HRDATA;
-  input         HREADYOUT;
-  input         HRESP;
-  input         HEXOKAY;
-  input         HSELx;
+  always @(posedge ahb_design_top_if.HCLK) ahb_design_top_if.HADDR <= 'h0;
 
   // Internal signals
 
@@ -67,4 +28,4 @@ module ahb_top
 
 
   
-endmodule: ahb_top
+endmodule: ahb_design_top
