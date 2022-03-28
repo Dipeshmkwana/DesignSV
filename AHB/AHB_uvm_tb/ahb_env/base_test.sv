@@ -3,6 +3,8 @@
 `include "ahb_env_pkg.sv"
 `include "ahb_if.sv"
 
+import uvm_pkg::*;
+	`include "uvm_macros.svh"
 import ahb_env_pkg::*;
 
 class base_test extends uvm_test;
