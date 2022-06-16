@@ -62,6 +62,3 @@ class base_test extends uvm_test;
   endtask
   
 endclass: base_test
-
-// Command-line arguments for an EDA simulator
-//$> [simulator] -f list +UVM_TESTNAME=base_test
